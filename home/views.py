@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .models import *
@@ -10,12 +11,14 @@ import datetime
 def index(request):
     return render(request,'index.html')
 
+@login_required
 def categoria(request): 
     contexto = {
         'lista': Categoria.objects.all().order_by('-id'),
     }
     return render(request, 'categoria/lista.html', contexto)
 
+@login_required
 def form_categoria(request):
     if (request.method == 'POST'):
         form = CategoriaForm(request.POST)
