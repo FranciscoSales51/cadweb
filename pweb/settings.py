@@ -85,6 +85,6 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Authentication settings
-LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/login/'
+LOGIN_URL = '/login/'  # Redireciona para a página de login se não autenticado
+LOGIN_REDIRECT_URL = '/'  # Onde o usuário vai após o login bem-sucedido
+LOGOUT_REDIRECT_URL = '/login/'  # Onde o usuário vai após o logout (após desconectar)
