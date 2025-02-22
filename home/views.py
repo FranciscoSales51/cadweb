@@ -28,7 +28,7 @@ def form_categoria(request):
             salvando = form.save()
             lista=[]
             lista.append(salvando)
-            messages.success(request, 'Operação realizda com Sucesso.')
+            messages.success(request, 'Processo concluído com sucesso!.')
             return render(request, 'categoria/lista.html', {'lista':lista,})
         
     else: 
@@ -97,7 +97,7 @@ def form_cliente(request):
             salvando = form.save()
             listaCliente=[]
             listaCliente.append(salvando)
-            messages.success(request, 'Operação realizda com Sucesso.')
+            messages.success(request, 'Processo concluído com sucesso!')
             return render(request, 'cliente/lista.html', {'listaCliente':listaCliente,})
         
     else: 
@@ -164,7 +164,7 @@ def form_produto(request):
             salvando = form.save()
             listaProduto=[]
             listaProduto.append(salvando)
-            messages.success(request, 'Operação realizda com Sucesso.')
+            messages.success(request, 'Processo concluído com sucesso!')
             return render(request, 'produto/lista.html', {'listaProduto':listaProduto,})
         
     else: 
@@ -199,7 +199,7 @@ def remover_produto(request, id):
     try:
         produto = Produto.objects.get(pk=id)
         produto.delete()
-        messages.success(request, 'Exclusão realizda com Sucesso.')
+        messages.success(request, 'A exclusão foi realizada.')
     except:
         messages.error(request, 'Registro não encontrado')
         return redirect('listaProduto')
@@ -373,7 +373,7 @@ def remover_item_pedido(request, id):
     estoque.save()  # Salva as alterações no estoque
     # Remove o item do pedido
     item_pedido.delete()
-    messages.success(request, 'Operação realizada com Sucesso')
+    messages.success(request, 'Processo concluído com sucesso!')
 
 
     # Redireciona de volta para a página de detalhes do pedido
@@ -394,7 +394,7 @@ def remover_pedido(request, id):
 
         print(f"Pedido encontrado: {pedido}")
         pedido.delete()
-        messages.success(request, 'Exclusão realizda com Sucesso.')
+        messages.success(request, 'A exclusão foi realizada.')
     except:
         messages.error(request, 'Registro não encontrado')
         return redirect('listaPedido')
@@ -478,7 +478,7 @@ def form_pagamento(request,id):
         if form.is_valid():
             form.save()
             
-            messages.success(request, 'Operação realizada com Sucesso')
+            messages.success(request, 'Processo concluído com sucesso!')
 
             pagamento = Pagamento(pedido=pedido)
             form = PagamentoForm(instance=pagamento)
@@ -532,7 +532,7 @@ def remover_pagamento(request, id):
     try:
         pagamento = Pagamento.objects.get(pk=id)
         pagamento.delete()
-        messages.success(request, 'Exclusão realizda com Sucesso.')
+        messages.success(request, 'A exclusão foi realizada.')
         pagamento_id = pagamento.pedido.id
     except:
         messages.error(request, 'Registro não encontrado')

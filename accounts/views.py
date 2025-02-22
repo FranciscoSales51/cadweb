@@ -1,27 +1,20 @@
 from django.shortcuts import render, redirect
-from .forms import RegistroForm
-from django.contrib.auth.views import LoginView
-from .forms import CustomAuthenticationForm
-from django.urls import reverse_lazy
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
 
-# Create your views here.
-def registra_usuario(request):
+def login_view(request):
     if request.method == "POST":
-        form = RegistroForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('login')
+        username = request.POST['username']
+        password = request.POST['password']
         
-    else:
-        form = RegistroForm()
+        # Tentando autenticar o usuário
+        user = authenticate(request, username=username, password=password)
         
-    return render(request, 'accounts/register.html', {'form': form})
-
-
-class CustomLoginView(LoginView):
-    authentication_form = CustomAuthenticationForm
-    template_name = 'accounts/login.html'
-    redirect_authenticated_user = True
+        if user is not None:
+            login(request, user)
+            return redirect('dashboard')  # ou redirecione para a página que você deseja
+        else:
+            messages.error(request, "Login Incorreto!")
+            return render(request, 'login.html')
     
-    def get_success_url(self):
-        return reverse_lazy('index')
+    return render(request, 'login.html')

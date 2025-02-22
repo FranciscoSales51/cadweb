@@ -6,7 +6,8 @@
     <div class="barrabotoes">
         <button type="button" class="btn btn-success btn-sm" onclick="location.href='{% url 'form_produto' %}'">Novo Produto</button> 
         <button type="button" class="btn btn-info btn-sm" onclick="location.href='{% url 'listaProduto' %}'">Recarregar</button> 
-        </div>
+    </div>
+    
     <table class="table table-bordered table-hover">
         <thead class="thead-dark">
             <tr>
@@ -29,10 +30,13 @@
                 <td style="text-align: center; vertical-align: middle;">{{produto.categoria}}</td>
                 <td style="text-align: center; vertical-align: middle;">{{ produto.estoque.qtde }}</td>
                 <td style="vertical-align: middle;">
-                    <button type="button" class="btn btn-info" onclick="location.href='{% url 'detalhe_produto' produto.id%}'">Detalhes</button>
-                    <button type="button" class="btn btn-success" onclick="location.href='{% url 'ajustar_estoque' produto.id%}'">Estoque</button>
-                    <button type="button" class="btn btn-warning" onclick="location.href='{% url 'editar_produto' produto.id %}'">Alterar</button>
-                    <button type="button" class="btn btn-danger" onclick="confirmClose('{% url 'remover_produto' produto.id %}')">Excluir</button>
+                    <!-- Alinhando os botões na mesma linha com d-flex -->
+                    <div class="d-flex gap-2">
+                        <button type="button" class="btn btn-info" onclick="location.href='{% url 'detalhe_produto' produto.id%}'">Detalhes</button>
+                        <button type="button" class="btn btn-success" onclick="location.href='{% url 'ajustar_estoque' produto.id%}'">Estoque</button>
+                        <button type="button" class="btn btn-warning" onclick="location.href='{% url 'editar_produto' produto.id %}'">Alterar</button>
+                        <button type="button" class="btn btn-danger" onclick="confirmClose('{% url 'remover_produto' produto.id %}')">Excluir</button>
+                    </div>
                 </td>
             </tr>
             {% endfor %}

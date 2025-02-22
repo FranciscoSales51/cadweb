@@ -114,7 +114,7 @@ h5{
 .canvas {
         display: block;
         margin: 20px auto; /* Centraliza horizontalmente e adiciona margem superior */
-        border:1px solid #4e4c4cfa;
+        border:1px solid #0e0e0efa;
         
         padding: 10px;
 }
